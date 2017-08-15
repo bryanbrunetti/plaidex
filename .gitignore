@@ -1,0 +1,5 @@
+plaidex.iml
+.idea/
+_build
+deps
+.env
