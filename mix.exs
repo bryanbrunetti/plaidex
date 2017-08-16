@@ -25,7 +25,7 @@ defmodule Plaidex.Mixfile do
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
       {:exfmt, "~> 0.4.0", only: :dev},
-#      {:exvcr, "~> 0.8", only: :test},
+      {:exvcr, "~> 0.8", only: :test},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
     ]
   end

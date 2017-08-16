@@ -1,15 +1,12 @@
 defmodule Plaidex.API.Base do
   @moduledoc false
 
+  require IEx
+
   def get(endpoint, options \\ []) do
     endpoint
     |> url
-    |> HTTPoison.get!(
-         options,
-         hackney: [
-           pool: :default
-         ]
-       )
+    |> HTTPoison.get!(options, hackney: [pool: :default])
     |> decode_body
     |> handle_error
   end
@@ -17,32 +14,24 @@ defmodule Plaidex.API.Base do
   def post(endpoint, data \\ []) do
     endpoint
     |> url
-    |> HTTPoison.post!(
-         data
-         |> encode,
-         [
-           {
-             "Content-Type",
-             "application/json"
-           }
-         ],
-         hackney: [
-           pool: :default
-         ]
-       )
+    |> HTTPoison.post!(data |> encode, [{"Content-Type", "application/json"}], hackney: [pool: :default])
     |> decode_body
     |> handle_error
+  end
+
+  def authenticated_post(access_token, params, endpoint) do
+    parameters = case params do
+      nil -> Plaidex.Config.credentials(access_token)
+      params -> Plaidex.Config.credentials(access_token) |> Enum.into(params)
+    end
+
+    post(endpoint, parameters)
   end
 
   def delete(endpoint) do
     response = endpoint
                |> url
-               |> HTTPoison.delete!(
-                    %{},
-                    hackney: [
-                      pool: :default
-                    ]
-                  )
+               |> HTTPoison.delete!(%{}, hackney: [pool: :default])
     if response.status_code == 204 do
       {:ok}
     end
@@ -51,14 +40,7 @@ defmodule Plaidex.API.Base do
   def patch(endpoint, data) do
     endpoint
     |> url
-    |> HTTPoison.patch!(
-         data
-         |> encode,
-         %{},
-         hackney: [
-           pool: :default
-         ]
-       )
+    |> HTTPoison.patch!(data |> encode, %{}, hackney: [pool: :default])
     |> decode_body
     |> handle_error
   end
@@ -84,6 +66,7 @@ defmodule Plaidex.API.Base do
       _er -> {:error, response}
     end
   end
+
 
   defp environment_url do
     case Mix.env do
