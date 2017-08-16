@@ -7,6 +7,11 @@ defmodule Plaidex.Config do
 
   def get, do: get(current_scope())
 
+  def credentials(access_token) do
+    config = get()
+    %{client_id: config[:plaid_client_id], secret: config[:plaid_secret], access_token: access_token}
+  end
+
   defp get(:global) do
     case Application.get_env(:plaidex, :plaidex_auth, nil) do
       nil -> set_application_env()

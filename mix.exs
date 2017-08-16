@@ -16,14 +16,17 @@ defmodule Plaidex.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   [
     mod: {Plaidex, []},
-    applications: [:inets, :ssl, :crypto]
+    applications: [:inets, :ssl, :crypto, :httpoison]
   ]
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       {:httpoison, "~> 0.13"},
-      {:exvcr, "~> 0.8", only: :test},
+      {:poison, "~> 3.1"},
+      {:exfmt, "~> 0.4.0", only: :dev},
+#      {:exvcr, "~> 0.8", only: :test},
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
     ]
   end
 

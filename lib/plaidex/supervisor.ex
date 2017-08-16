@@ -1,6 +1,6 @@
 defmodule Plaidex.Supervisor do
   @moduledoc false
-  
+
   use Supervisor
 
   def start_link(arg) do
@@ -8,7 +8,9 @@ defmodule Plaidex.Supervisor do
   end
 
   def init(_arg) do
-    children = []
+    children = [
+#      :hackney_pool.child_spec(:default, [timeout: 15_000, max_connections: 64])
+    ]
 
     supervise(children, strategy: :one_for_one)
   end
