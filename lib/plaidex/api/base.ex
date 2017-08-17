@@ -1,8 +1,6 @@
 defmodule Plaidex.API.Base do
   @moduledoc false
 
-  require IEx
-
   def get(endpoint, options \\ []) do
     endpoint
     |> url
@@ -66,7 +64,6 @@ defmodule Plaidex.API.Base do
       _er -> {:error, response}
     end
   end
-
 
   defp environment_url do
     case Mix.env do

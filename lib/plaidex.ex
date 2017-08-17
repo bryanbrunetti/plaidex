@@ -1,6 +1,6 @@
 defmodule Plaidex do
   @moduledoc """
-  Documentation for Plaidex.
+  Client library for Plaid
   """
 
   use Application
@@ -11,8 +11,8 @@ defmodule Plaidex do
   end
 
   defdelegate categories(options \\ "categories/get"), to: Plaidex.API.Base, as: :post
+
   defdelegate auth(access_token, params \\ nil, endpoint \\ "auth/get"), to: Plaidex.API.Base, as: :authenticated_post
-#  defdelegate transactions(params), to: Plaidex.API.Transactions, as: :get
   defdelegate transactions(access_token, params \\ nil, endpoint \\ "transactions/get"), to: Plaidex.API.Base, as: :authenticated_post
   defdelegate accounts(access_token, params \\ nil, endpoint \\ "accounts/get"), to: Plaidex.API.Base, as: :authenticated_post
   defdelegate identity(access_token, params \\ nil, endpoint \\ "identity/get"), to: Plaidex.API.Base, as: :authenticated_post
@@ -21,5 +21,4 @@ defmodule Plaidex do
   defdelegate item(access_token, params \\ nil, endpoint \\ "item/get"), to: Plaidex.API.Base, as: :authenticated_post
   defdelegate webhook_update(access_token, params \\ nil, endpoint \\ "/item/webhook/update"), to: Plaidex.API.Base, as: :authenticated_post
   defdelegate item_delete(access_token, params \\ nil, endpoint \\ "/item/delete"), to: Plaidex.API.Base, as: :authenticated_post
-
 end

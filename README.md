@@ -1,11 +1,12 @@
 # Plaidex
 
-**TODO: Add description**
+Some would call this a client library for [Plaid](https://plaid.com), but
+it's simply a little bit of code on top of [HTTPoison](https://github.com/edgurgel/httpoison) 
+made for use in [Leather](https://leatherapp.com)
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `plaidex` to your list of dependencies in `mix.exs`:
+Add `plaidex` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -15,7 +16,17 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/plaidex](https://hexdocs.pm/plaidex).
+# Configuration
 
+Configuration can be done two ways, with environment variables or with [Process](https://hexdocs.pm/elixir/Process.html).
+
+- Set the following environment variables to the appropriate values:
+  - PLAID_CLIENT_ID
+  - PLAID_PUBLIC_KEY
+  - PLAID_SECRET
+  
+or from within a process:
+
+- ```elixir
+  Plaidex.Config.set(plaid_client_id: "abc123", plaid_secret: "shh")
+```

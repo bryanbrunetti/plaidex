@@ -26,6 +26,7 @@ defmodule Plaidex.Mixfile do
       {:poison, "~> 3.1"},
       {:exfmt, "~> 0.4.0", only: :dev},
       {:exvcr, "~> 0.8", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
     ]
   end
@@ -33,8 +34,11 @@ defmodule Plaidex.Mixfile do
   defp package do
     [
       maintainers: ["Bryan Brunetti"],
+      source_url: "https://github.com/deadkarma/plaidex",
+      licenses: ["Apache 2.0"],
       links: %{
-        "GitHub" => "https://github.com/deadkarma/plaidex"
+        "GitHub" => "https://github.com/deadkarma/plaidex",
+        "Leather" => "https://leatherapp.com"
       }
     ]
   end
