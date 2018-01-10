@@ -26,6 +26,15 @@ defmodule Plaidex.API.Base do
     post(endpoint, parameters)
   end
 
+  def authenticated_post(params, endpoint) do
+    parameters = case params do
+      nil -> Plaidex.Config.credentials
+      params -> Plaidex.Config.credentials |> Enum.into(params)
+    end
+
+    post(endpoint, parameters)
+  end
+
   def delete(endpoint) do
     response = endpoint
                |> url
