@@ -27,6 +27,16 @@ defmodule Plaidex.Config.Test do
     assert result[:plaid_secret] == nil
   end
 
+  test "application config" do
+    Application.put_env(:plaidex, :plaidex_auth,
+      plaid_client_id: "5551212",
+      plaid_secret: "SHHHHhHhHHH"
+    )
+    result = Plaidex.Config.get
+    assert result[:plaid_client_id] == "5551212"
+    assert result[:plaid_secret] == "SHHHHhHhHHH"
+  end
+
   test "setting a non env global config" do
     Plaidex.Config.set(
       :global,

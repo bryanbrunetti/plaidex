@@ -20,9 +20,8 @@ defmodule Plaidex.Config do
   defp get(:global) do
     case Application.get_env(:plaidex, :plaidex_auth, nil) do
       nil -> set_application_env()
-      config -> config
+      config -> config |> Enum.into(%{})
     end
-    Application.get_env(:plaidex, :plaidex_auth, nil)
   end
 
   defp get(:process), do: Process.get(:plaidex_auth, nil)
