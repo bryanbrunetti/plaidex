@@ -22,4 +22,5 @@ defmodule Plaidex do
   defdelegate webhook_update(access_token, params \\ nil, endpoint \\ "/item/webhook/update"), to: Plaidex.API.Base, as: :authenticated_post
   defdelegate item_delete(access_token, params \\ nil, endpoint \\ "/item/delete"), to: Plaidex.API.Base, as: :authenticated_post
   defdelegate public_token_exchange(params \\ nil, endpoint \\ "item/public_token/exchange"), to: Plaidex.API.Base, as: :authenticated_post
+  defdelegate create_stripe_bank_token(access_token, params \\ nil, endpoint \\ "processor/stripe/bank_account_token/create"), to: Plaidex.API.Base, as: :authenticated_post
 end

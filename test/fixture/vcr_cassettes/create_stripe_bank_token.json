@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body":
+        "{\"secret\":dec6ba05546855aa62717a9ded9834,\"client_id\":598ef95cbdc6a4059887f880,\"account_id\":\"sandbox-account-id\",\"access_token\":\"access-sandbox-token\"}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "post",
+      "options": {
+        "pool": "default"
+      },
+      "request_body": "",
+      "url":
+        "https://sandbox.plaid.com/processor/stripe/bank_account_token/create"
+    },
+    "response": {
+      "body":
+        "{\"stripe_bank_account_token\":\"btok_1BiwoUIk28pJ0gtl4aO2zErM\",\"request_id\":\"K4qE9\"}",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Thu, 11 Jan 2018 03:35:39 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "201",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

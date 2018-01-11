@@ -56,4 +56,14 @@ defmodule PlaidexTest do
       assert result["item_id"]
     end
   end
+
+  test "create_stripe_bank_account_token" do
+    use_cassette "create_stripe_bank_token" do
+      {:ok, result} = Plaidex.create_stripe_bank_token("access-sandbox-token",
+        account_id: "sandbox-account-id"
+      )
+
+      assert result["stripe_bank_account_token"]
+    end
+  end
 end
