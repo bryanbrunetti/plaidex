@@ -1,6 +1,8 @@
 defmodule Plaidex.API.Base do
   @moduledoc false
 
+  defdelegate environment_url, to: Plaidex.Config
+
   def get(endpoint, options \\ []) do
     endpoint
     |> url
@@ -71,14 +73,6 @@ defmodule Plaidex.API.Base do
     case response["error_code"] do
       nil -> {:ok, response}
       _er -> {:error, response}
-    end
-  end
-
-  defp environment_url do
-    case Mix.env do
-      :prod -> "production"
-      :dev -> "sandbox"
-      :test -> "sandbox"
     end
   end
 end

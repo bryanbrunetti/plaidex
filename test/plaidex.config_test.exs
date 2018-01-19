@@ -37,6 +37,15 @@ defmodule Plaidex.Config.Test do
     assert result[:plaid_secret] == "SHHHHhHhHHH"
   end
 
+  test "environment url default" do
+    assert Plaidex.Config.environment_url == "sandbox"
+  end
+
+  test "environment url" do
+    Application.put_env(:plaidex, :plaidex_auth, plaid_env: "development")
+    assert Plaidex.Config.environment_url == "development"
+  end
+
   test "setting a non env global config" do
     Plaidex.Config.set(
       :global,

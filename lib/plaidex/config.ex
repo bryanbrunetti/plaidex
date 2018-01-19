@@ -17,6 +17,15 @@ defmodule Plaidex.Config do
     %{client_id: config[:plaid_client_id], secret: config[:plaid_secret]}
   end
 
+  def environment_url do
+    config = get()
+
+    case config[:plaid_env] do
+      nil -> default_env()
+      env -> env
+    end
+  end
+
   defp get(:global) do
     case Application.get_env(:plaidex, :plaidex_auth, nil) do
       nil -> set_application_env()
@@ -48,4 +57,11 @@ defmodule Plaidex.Config do
     :ok
   end
 
+  defp default_env do
+    case Mix.env do
+      :prod -> "production"
+      :dev -> "sandbox"
+      :test -> "sandbox"
+    end
+  end
 end
