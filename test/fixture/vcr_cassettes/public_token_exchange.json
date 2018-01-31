@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body":
+        "{\"secret\":\"dec6ba05546855aa62717a9ded9834\",\"public_token\":\"public-sandbox-access-token\",\"client_id\":\"598ef95cbdc6a4059887f880\"}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "post",
+      "options": {
+        "pool": "default"
+      },
+      "request_body": "",
+      "url": "https://sandbox.plaid.com/item/public_token/exchange"
+    },
+    "response": {
+      "body":
+        "{\"access_token\":\"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\"item_id\":\"M5eVJqLnv3tbzdngLDp9FL5OlDNxlNhlE55op\",\"request_id\": \"Aim3b\"}",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Wed, 10 Jan 2018 21:22:00 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "201",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]
