@@ -65,11 +65,5 @@ defmodule Plaidex.API.Base do
     end
   end
 
-  defp environment_url do
-    case Mix.env do
-      :prod -> "production"
-      :dev -> "sandbox"
-      :test -> "sandbox"
-    end
-  end
+  defp environment_url, do: Plaidex.Config.environment()
 end

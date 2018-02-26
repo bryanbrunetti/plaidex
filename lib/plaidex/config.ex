@@ -12,6 +12,23 @@ defmodule Plaidex.Config do
     %{client_id: config[:plaid_client_id], secret: config[:plaid_secret], access_token: access_token}
   end
 
+  def environment() do
+    get()
+    |> Map.get(:plaid_environment)
+    |> case do
+      nil -> environment(Mix.env)
+      result -> result
+    end
+  end
+
+  defp environment(env) do
+    case env do
+      :prod -> "production"
+      :dev -> "sandbox"
+      :test -> "sandbox"
+    end
+  end
+
   defp get(:global) do
     case Application.get_env(:plaidex, :plaidex_auth, nil) do
       nil -> set_application_env()
@@ -23,7 +40,7 @@ defmodule Plaidex.Config do
   defp get(:process), do: Process.get(:plaidex_auth, nil)
 
   defp set_application_env() do
-    config = ["plaid_client_id", "plaid_public_key", "plaid_secret"]
+    config = ["plaid_client_id", "plaid_public_key", "plaid_secret", "plaid_environment"]
              |> Enum.reduce(%{}, fn (v, c) -> Map.put(c, String.to_atom(v), get_system_value(v)) end)
     Application.put_env(:plaidex, :plaidex_auth, config, [])
     config
